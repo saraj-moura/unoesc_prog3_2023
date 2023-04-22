@@ -92,5 +92,36 @@ function calcularEquacao(x) {
     return (equacao);
   }
   
+  function obterFatosDeGato() {
+    return fetch("https://catfact.ninja/facts")
+      .then((resposta) => resposta.json())
+      .then((dados) => {
+        const fatos = dados.data.map((item) => item.fact);
+        return fatos;
+      });
+  }
+  
+  async function obterOpeningCrawlsDosFilmes() {
+    const urls = [
+      "https://swapi.dev/api/films/1/",
+      "https://swapi.dev/api/films/2/",
+      "https://swapi.dev/api/films/3/",
+      "https://swapi.dev/api/films/4/",
+      "https://swapi.dev/api/films/5/",
+      "https://swapi.dev/api/films/6/",
+    ];
+  
+    const openingCrawls = [];
+  
+    for (const url of urls) {
+      const resposta = await fetch(url);
+      const dados = await resposta.json();
+      openingCrawls.push(dados.opening_crawl);
+    }
+  
+    return openingCrawls;
+  }
+
+  //async function obterOpeningCrawlsDosFilmes
 
   
