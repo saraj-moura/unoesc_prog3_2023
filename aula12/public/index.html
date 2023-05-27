@@ -1,43 +1,58 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-	<title>ChatRoom</title>
-	<meta charset="utf-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<link rel = "stylesheet" href="style.css">
-	<script>
-		var name = prompt("Please enter your name");
-	</script>
+  <title>Multi-Salas</title>
+  <style>
+    #messages {
+      height: 200px;
+      overflow-y: scroll;
+    }
+  </style>
 </head>
+
 <body>
-    
-    <div id="intro">
-      <h1>ChatRoom</h1>
-    </div>
-    
-    <ul id="messages"></ul>
-    
-    <form action="">
-      <input id="m" placeholder="Enter your message..." autocomplete="off" required /><button>Send</button>
-    </form>
 
-    <script>src="/socket.io/socket.io.js"</script>
-    <script>src="https://code.jquery.com/jquery-3.4.1min.js"</script>
+  <div id="intro">
+    <h1>ChatRoom</h1>
+  </div>
+  <!-- 
+  <ul id="messages"></ul>
 
-    <script>
-		
-    		let socket = io();
-        socket.emit('joiningmsg', name);
-        socket.on('chat message', function(msg){
-          $('#messages').append($(`<li>`).text(msg));
-        });
-  		
-        $('form').submit(function(e){
-          e.preventDefault();
-          socket.emit('chat message', (name + ': '+ $('#m').val()));
-          $('#messages').append($(`<li id="list">`).text('You: ' + $('#m').val()));
-            
-        })
-    </script>
+  <form action="">
+    <input id="m" placeholder="Enter your message..." autocomplete="off" required /><button>Send</button>
+  </form>
+
+  <script>src = "/socket.io/socket.io.js"</script>
+  <script>src = "https://code.jquery.com/jquery-3.4.1min.js"</script>
+
+  <script>
+
+    let socket = io();
+    socket.emit('joiningmsg', name);
+    socket.on('chat message', function (msg) {
+      $('#messages').append($(`<li>`).text(msg));
+    });
+
+    $('form').submit(function (e) {
+      e.preventDefault();
+      socket.emit('chat message', (name + ': ' + $('#m').val()));
+      $('#messages').append($(`<li id="list">`).text('You: ' + $('#m').val()));
+
+    })
+  </script> -->
+
+  <h1>Multi-Salas</h1>
+  <div id="messages"></div>
+  <input type="text" id="messageInput" placeholder="Digite sua mensagem" />
+  <button onclick="sendMessage()">Enviar</button>
+  <br />
+  <input type="text" id="roomInput" placeholder="Digite o nome da sala" />
+  <button onclick="changeRoom()">Trocar de Sala</button>
+  <button onclick="buzzAllClients()">BUZZ</button>
+
+  <script src="chat.js"></script>
+
 </body>
+
 </html>
